@@ -24,6 +24,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
     }
 
     private void listenForMessageFromServer() {
+        // TODO: make sure the program breaks out of the while true loop when the connection with the server is lost
         // get messages from server
         while (true) {
             String request;

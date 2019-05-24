@@ -41,14 +41,7 @@ public class ComPort {
         }
     }
 
-    public void writeOutput(int value) {
-        try {
-            output.write(value);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+
     // Method to tell us what the Arduino is telling us.
     public String readInput() {
         try {
