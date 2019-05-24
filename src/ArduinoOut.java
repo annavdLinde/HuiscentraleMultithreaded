@@ -40,7 +40,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
     }
 
     private void sendToArduino(String message) {
-        String[] messageSplit = message.split(";", 0);
+        String[] messageSplit = message.split(",", 0);
         //checks if the message has the correct format
         if (messageSplit.length == 3) {
 
@@ -49,11 +49,14 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
             System.out.println("Sending to Arduino: " + outputToArduino);
             try {
                 comPort.writeOutput(outputToArduino);
-                System.out.println("sending serial message to arduino succesfull");
             } catch (Exception e) {
-                System.out.println("sending serial message to arduino failed");
+                System.out.println("protocol has incorrect format" + e);
 
             }
+        }
+        else {
+            System.out.println("message has incorrect format");
+            //TODO: message needs to be send back to proxy with this conclusion
         }
 
     }

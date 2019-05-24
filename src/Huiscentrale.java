@@ -33,14 +33,16 @@ public class Huiscentrale {
         try {
             proxy.connectClientToServer(client_id);
             System.out.println("Connected to server");
+            t1.start();
+            t2.start();
 
         } catch (
                 IOException e) {
             System.out.println("HC cannot connect to server: " + e);
+
         }
 
-        t1.start();
-        t2.start();
+
     }
 
     // method to stop the threads nice and neat.
