@@ -33,9 +33,9 @@ public class ArduinoIn implements Runnable{ // implements Runnable to work with 
 
     private void sendToProxy(String reactionFor, String reactionFromArduino) {
         try {
-            //TODO: make sure you always respond, the server will if HC is offline, GA waits for a reply from either server or HC
-            //TODO: change hardcoded "setHc" to string that will be filled by the first part of the incoming message from the server
-            //TODO: make sure client_id is found (located in huiscentrale class) instead of hardcoded id
+            //TODO: make sure you always respond, the server will if HC is offline, GA waits for a reply from either server or HC.
+            //TODO: change hardcoded "setHc" to string that will be filled by the first part of the incoming message from the server.
+            //TODO: make sure client_id is found (located in huiscentrale class) instead of hardcoded id.
 
             proxy.sendResponse("setHc", "5678", reactionFor, reactionFromArduino);
         } catch (Exception e) {
