@@ -1,15 +1,14 @@
+import com.onsdomein.proxy.ProxyOnsDomein;
+
 public class ArduinoOut implements Runnable { // implements Runnable to work with threads.
     private ComPort comPort;
-
-
-    // In this class we want access to the threads for stopping them. Not sure if this is necessary.
-    private Huiscentrale huiscentrale;
+    private ProxyOnsDomein proxy;
 
     // constructor that gives this class the same instance of comport as all other serialport communicating classes.
     // it will also get an instance of Huiscentrale.
-    public ArduinoOut(ComPort comPort, Huiscentrale huiscentrale) {
+    ArduinoOut(ComPort comPort, ProxyOnsDomein proxy) {
         this.comPort = comPort;
-        this.huiscentrale = huiscentrale;
+        this.proxy = proxy;
     }
 
 
@@ -29,7 +28,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
         while (true) {
             String request;
             try {
-                request = huiscentrale.proxy.receiveRequest();
+                request = proxy.receiveRequest();
             } catch (Exception e) {
                 System.out.println("Connection with server lost. " + e);
                 System.exit(0);
@@ -46,6 +45,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
         if (messageSplit.length == 3) {
 
             String outputToArduino = messageSplit[2];
+
 
             System.out.println("Sending to Arduino: " + outputToArduino);
             try {

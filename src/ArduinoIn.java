@@ -16,18 +16,18 @@ public class ArduinoIn implements Runnable{ // implements Runnable to work with 
     @Override
     public void run() {
         // As long as the thread is alive this while loop will be alive and will keep listening to what the Arduino has to say.
+        String inputBuffer;
         while (!Thread.interrupted()) {
-
-           // System.out.println(comPort.readInput());
-            String[] messageSplit = comPort.readInput().split(",", 0);
-
-            if (messageSplit.length == 2) {
-                //TODO: change hardcoded 1234 to part two of the received message from server
-                sendToProxy("1234", comPort.readInput());
+            inputBuffer = comPort.readInput();
+            if (inputBuffer.startsWith("<") && inputBuffer.endsWith(">")) {
+                sendToProxy("1234", inputBuffer);
             }
             else {
-                System.out.println(comPort.readInput());
+                System.out.println(inputBuffer);
             }
+
+
+
         }
     }
 

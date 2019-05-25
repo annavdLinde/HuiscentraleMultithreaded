@@ -20,13 +20,13 @@ public class ComPort {
             // Create an outputstream.
             output = comPort.getOutputStream();
             writer = new PrintStream(output);
-
             // Create an inputstream.
             input = new BufferedReader(new InputStreamReader(comPort.getInputStream()));
 
         } catch (Exception e) {
             System.out.println("Comport niet beschikbaar");
             // TODO: message to proxy if comport not available
+
             System.exit(1); // Bye bye.
         }
     }
@@ -50,10 +50,10 @@ public class ComPort {
             return e.toString();
         }
     }
-    // Clean up, if we stop the program we need to close the serialport.
-    public synchronized void close() {
-        if (comPort != null) {
-            comPort.closePort();
-        }
-    }
+//    // Clean up, if we stop the program we need to close the serialport.
+//    public synchronized void close() {
+//        if (comPort != null) {
+//            comPort.closePort();
+//        }
+//    }
 }
