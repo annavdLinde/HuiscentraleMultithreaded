@@ -32,6 +32,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
                 request = huiscentrale.proxy.receiveRequest();
             } catch (Exception e) {
                 System.out.println("Connection with server lost. " + e);
+                System.exit(0);
                 break;
             }
             System.out.println("received from server: " + request);
@@ -40,7 +41,7 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
     }
 
     private void sendToArduino(String message) {
-        String[] messageSplit = message.split(",", 0);
+        String[] messageSplit = message.split(";", 0);
         //checks if the message has the correct format
         if (messageSplit.length == 3) {
 
@@ -55,8 +56,9 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
             }
         }
         else {
-            System.out.println("message has incorrect format");
-            //TODO: message needs to be send back to proxy with this conclusion
+            //should never happen but is put in just to be sure
+            System.out.println("message is either too long or too short");
+
         }
 
     }

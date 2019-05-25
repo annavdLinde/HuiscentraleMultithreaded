@@ -22,7 +22,7 @@ public class Huiscentrale {
 
         // Create instances of arduinoOut and arduinoIn. Both get the same instance of comPort so that they communicate via the same line.
         ArduinoOut arduinoOut = new ArduinoOut(comPort, this);
-        ArduinoIn arduinoIn = new ArduinoIn(comPort);
+        ArduinoIn arduinoIn = new ArduinoIn(comPort, proxy);
 
         // Start two threads for each class that needs one.
         t1 = new Thread(arduinoOut);

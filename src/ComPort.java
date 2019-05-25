@@ -5,8 +5,7 @@ import java.io.*;
 public class ComPort {
     private SerialPort comPort;
     private OutputStream output; // Where to write to
-    private Writer writer;
-    private PrintStream writer1; // what to write (byte, char or string. PrintStream does strings)
+    private PrintStream writer;
     private BufferedReader input;
 
     public void initialize() {
@@ -20,7 +19,7 @@ public class ComPort {
             comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING,0,0);
             // Create an outputstream.
             output = comPort.getOutputStream();
-            writer1 = new PrintStream(output);
+            writer = new PrintStream(output);
 
             // Create an inputstream.
             input = new BufferedReader(new InputStreamReader(comPort.getInputStream()));
@@ -34,7 +33,7 @@ public class ComPort {
 
     public void writeOutput(String command) {
         try {
-            writer1.print(command);
+            writer.print(command);
         }
         catch (Exception e) {
             System.out.println(e);
