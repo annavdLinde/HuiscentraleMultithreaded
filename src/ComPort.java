@@ -7,6 +7,7 @@ public class ComPort {
     private OutputStream output; // Where to write to
     private PrintStream writer;
     private BufferedReader input;
+    String messageNOK;
 
     public void initialize() {
         // Create a serialport for your pc, check to see what serialport your Arduino is connected to.
@@ -26,7 +27,6 @@ public class ComPort {
         } catch (Exception e) {
             System.out.println("Comport niet beschikbaar");
             // TODO: message to proxy if comport not available
-
             System.exit(1); // Bye bye.
         }
     }
@@ -50,6 +50,9 @@ public class ComPort {
             return e.toString();
         }
     }
+
+
+
 //    // Clean up, if we stop the program we need to close the serialport.
 //    public synchronized void close() {
 //        if (comPort != null) {

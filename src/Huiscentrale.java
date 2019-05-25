@@ -4,7 +4,18 @@ import java.io.IOException;
 
 class Huiscentrale {
     private String client_id = "5678";
-    private ProxyOnsDomein proxy = new ProxyOnsDomein();
+    ProxyOnsDomein proxy = new ProxyOnsDomein();
+
+    ComPort comPort = new ComPort();
+
+    // Create instances of outputToArduino and inputFromArduino. Both get the same instance of comPort so that they communicate via the same line.
+    OutputToArduino outputToArduino = new OutputToArduino(comPort, proxy);
+    InputFromArduino inputFromArduino = new InputFromArduino(comPort, this);
+
+    // Start two threads, one for each class that needs one.
+    Thread t1 = new Thread(outputToArduino);
+    Thread t2 = new Thread(inputFromArduino);
+
 
     Huiscentrale() {
         huiscentraleInitialize();
@@ -12,19 +23,9 @@ class Huiscentrale {
 
 
 
-    public void huiscentraleInitialize() {
+    private void huiscentraleInitialize() {
         // Instantiate and initialize a comport via class ComPort.
-        ComPort comPort = new ComPort();
         comPort.initialize();
-
-        // Create instances of arduinoOut and arduinoIn. Both get the same instance of comPort so that they communicate via the same line.
-        ArduinoOut arduinoOut = new ArduinoOut(comPort, proxy);
-        ArduinoIn arduinoIn = new ArduinoIn(comPort, proxy);
-
-        // Start two threads for each class that needs one.
-        Thread t1 = new Thread(arduinoOut);
-        Thread t2 = new Thread(arduinoIn);
-
 
         // After first boot of app connection is made with both arduino and server, then passes on to listeningForMessage
         try {
@@ -38,8 +39,11 @@ class Huiscentrale {
             System.out.println("HC cannot connect to server: " + e);
 
         }
-
-
     }
+
+    String getClient_id () {
+        return this.client_id;
+    }
+
 
 }

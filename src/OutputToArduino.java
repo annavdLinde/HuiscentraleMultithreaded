@@ -1,12 +1,12 @@
 import com.onsdomein.proxy.ProxyOnsDomein;
 
-public class ArduinoOut implements Runnable { // implements Runnable to work with threads.
+public class OutputToArduino implements Runnable { // implements Runnable to work with threads.
     private ComPort comPort;
     private ProxyOnsDomein proxy;
 
     // constructor that gives this class the same instance of comport as all other serialport communicating classes.
     // it will also get an instance of Huiscentrale.
-    ArduinoOut(ComPort comPort, ProxyOnsDomein proxy) {
+    OutputToArduino(ComPort comPort, ProxyOnsDomein proxy) {
         this.comPort = comPort;
         this.proxy = proxy;
     }
@@ -39,13 +39,12 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
         }
     }
 
-    private void sendToArduino(String message) {
+ void sendToArduino(String message) {
         String[] messageSplit = message.split(";", 0);
         //checks if the message has the correct format
         if (messageSplit.length == 3) {
 
             String outputToArduino = messageSplit[2];
-
 
             System.out.println("Sending to Arduino: " + outputToArduino);
             try {
@@ -62,4 +61,5 @@ public class ArduinoOut implements Runnable { // implements Runnable to work wit
         }
 
     }
+
 }
