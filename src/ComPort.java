@@ -5,6 +5,7 @@ import java.io.*;
 class ComPort {
     private PrintStream writer;
     private BufferedReader input;
+    
 
 
     void initialize() {
@@ -49,4 +50,6 @@ class ComPort {
             return e.toString();
         }
     }
+
+
 }

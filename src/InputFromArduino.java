@@ -1,4 +1,4 @@
-import com.onsdomein.proxy.ProxyOnsDomein;
+
 
 public class InputFromArduino implements Runnable { // implements Runnable to work with threads.
     private ComPort comPort;
@@ -36,7 +36,7 @@ public class InputFromArduino implements Runnable { // implements Runnable to wo
 
         try {
             System.out.println("Sending to server: " + huiscentrale.getServercommand() + ";" + huiscentrale.getClient_id() + ";" + huiscentrale.getRequestForId() + ";" + reactionFromArduino);
-            huiscentrale.proxy.sendResponse("setHc", huiscentrale.getClient_id(), "1234", reactionFromArduino);
+            huiscentrale.proxy.sendResponse(huiscentrale.getServercommand(), huiscentrale.getClient_id(), huiscentrale.getRequestForId(), reactionFromArduino);
         } catch (Exception e) {
             System.out.println("HC cannot connect server. " + e);
         }
