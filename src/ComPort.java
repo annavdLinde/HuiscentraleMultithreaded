@@ -23,11 +23,12 @@ public class ComPort {
             writer = new PrintStream(output);
             // Create an inputstream.
             input = new BufferedReader(new InputStreamReader(comPort.getInputStream()));
+            System.out.println("ComPort succesfully opened");
 
         } catch (Exception e) {
-            System.out.println("Comport niet beschikbaar");
+            System.out.println("ComPort not available");
             // TODO: message to proxy if comport not available
-            System.exit(1); // Bye bye.
+            System.exit(1); // Program ends.
         }
     }
 

@@ -20,7 +20,9 @@ public class InputFromArduino implements Runnable{ // implements Runnable to wor
         while (!Thread.interrupted()) {
             inputBuffer = comPort.readInput();
             if (inputBuffer.startsWith("<") && inputBuffer.endsWith(">")) {
-                sendToProxy("1234", inputBuffer);
+                System.out.println("Received from Arduino: " + inputBuffer);
+
+                sendToProxy(inputBuffer);
             }
             else {
                 System.out.println(inputBuffer);
@@ -31,17 +33,17 @@ public class InputFromArduino implements Runnable{ // implements Runnable to wor
         }
     }
 
-    void sendToProxy(String reactionFor, String reactionFromArduino) {
+    void sendToProxy(String reactionFromArduino) {
 
 
         try {
             //TODO: make sure you always respond, the server will if HC is offline, GA waits for a reply from either server or HC.
             //TODO: change hardcoded "setHc" to string that will be filled by the first part of the incoming message from the server.
-            //TODO: make sure client_id is found (located in huiscentrale class) instead of hardcoded id.
-
-            huiscentrale.proxy.sendResponse("setHc", huiscentrale.getClient_id(), reactionFor, reactionFromArduino);
+            //TODO: make sure requestForId is used instead of hardcoded id.
+            System.out.println("Sending to server: " + "setHc;" + huiscentrale.getClient_id() + ";" + "1234" + ";" + reactionFromArduino);
+            huiscentrale.proxy.sendResponse("setHc", huiscentrale.getClient_id(), "1234", reactionFromArduino);
         } catch (Exception e) {
-            System.out.println("HC kan geen contact maken met de server. " + e);
+            System.out.println("HC cannot connect server. " + e);
         }
     }
 }

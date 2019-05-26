@@ -9,7 +9,7 @@ class Huiscentrale {
     ComPort comPort = new ComPort();
 
     // Create instances of outputToArduino and inputFromArduino. Both get the same instance of comPort so that they communicate via the same line.
-    OutputToArduino outputToArduino = new OutputToArduino(comPort, proxy);
+    OutputToArduino outputToArduino = new OutputToArduino(comPort, this);
     InputFromArduino inputFromArduino = new InputFromArduino(comPort, this);
 
     // Start two threads, one for each class that needs one.
@@ -27,7 +27,7 @@ class Huiscentrale {
         // Instantiate and initialize a comport via class ComPort.
         comPort.initialize();
 
-        // After first boot of app connection is made with both arduino and server, then passes on to listeningForMessage
+        // After first boot of app connection is made with both Arduino and server, then passes on to listeningForMessage
         try {
             proxy.connectClientToServer(client_id);
             System.out.println("Connected to server");
@@ -40,6 +40,8 @@ class Huiscentrale {
 
         }
     }
+
+
 
     String getClient_id () {
         return this.client_id;
