@@ -15,14 +15,13 @@ public class OutputToArduino implements Runnable { // implements Runnable to wor
     @Override
     public void run() {
         // keep listening for server input as long as the thread is alive.
-        while ( !Thread.interrupted()) {
+        while (!Thread.interrupted()) {
             listenForMessageFromServer();
 
         }
     }
 
     private void listenForMessageFromServer() {
-        // TODO: make sure the program breaks out of the while true loop when the connection with the server is lost
         // get messages from server
         while (true) {
             String request;
@@ -38,7 +37,7 @@ public class OutputToArduino implements Runnable { // implements Runnable to wor
         }
     }
 
- void sendToArduino(String message) {
+    private void sendToArduino(String message) {
         String[] messageSplit = message.split(";", 0);
         //checks if the message has the correct format
         if (messageSplit.length == 3) {
@@ -57,9 +56,8 @@ public class OutputToArduino implements Runnable { // implements Runnable to wor
                 System.out.println("protocol has incorrect format" + e);
 
             }
-        }
-        else {
-            //should never happen but is put in just to be sure
+        } else {
+            //should never happen according to GA writers but is put in just to be sure
             System.out.println("message is either too long or too short");
 
         }

@@ -1,6 +1,6 @@
 import com.onsdomein.proxy.ProxyOnsDomein;
 
-public class InputFromArduino implements Runnable{ // implements Runnable to work with threads.
+public class InputFromArduino implements Runnable { // implements Runnable to work with threads.
     private ComPort comPort;
     private Huiscentrale huiscentrale;
 
@@ -23,23 +23,18 @@ public class InputFromArduino implements Runnable{ // implements Runnable to wor
                 System.out.println("Received from Arduino: " + inputBuffer);
 
                 sendToProxy(inputBuffer);
-            }
-            else {
+            } else {
                 System.out.println(inputBuffer);
             }
-
 
 
         }
     }
 
-    void sendToProxy(String reactionFromArduino) {
+    private void sendToProxy(String reactionFromArduino) {
 
 
         try {
-            //TODO: make sure you always respond, the server will if HC is offline, GA waits for a reply from either server or HC.
-            //TODO: change hardcoded "setHc" to string that will be filled by the first part of the incoming message from the server.
-            //TODO: make sure requestForId is used instead of hardcoded id.
             System.out.println("Sending to server: " + huiscentrale.getServercommand() + ";" + huiscentrale.getClient_id() + ";" + huiscentrale.getRequestForId() + ";" + reactionFromArduino);
             huiscentrale.proxy.sendResponse("setHc", huiscentrale.getClient_id(), "1234", reactionFromArduino);
         } catch (Exception e) {

@@ -8,21 +8,20 @@ class Huiscentrale {
     private String requestForId;
     ProxyOnsDomein proxy = new ProxyOnsDomein();
 
-    ComPort comPort = new ComPort();
+    private ComPort comPort = new ComPort();
 
     // Create instances of outputToArduino and inputFromArduino. Both get the same instance of comPort so that they communicate via the same line.
-    OutputToArduino outputToArduino = new OutputToArduino(comPort, this);
-    InputFromArduino inputFromArduino = new InputFromArduino(comPort, this);
+    private OutputToArduino outputToArduino = new OutputToArduino(comPort, this);
+    private InputFromArduino inputFromArduino = new InputFromArduino(comPort, this);
 
     // Start two threads, one for each class that needs one.
-    Thread t1 = new Thread(outputToArduino);
-    Thread t2 = new Thread(inputFromArduino);
+    private Thread t1 = new Thread(outputToArduino);
+    private Thread t2 = new Thread(inputFromArduino);
 
 
     Huiscentrale() {
         huiscentraleInitialize();
     }
-
 
 
     private void huiscentraleInitialize() {
@@ -51,15 +50,15 @@ class Huiscentrale {
         return this.serverCommand;
     }
 
-    void setRequestForId (String id){
+    void setRequestForId(String id) {
         this.requestForId = id;
     }
 
-    String getRequestForId(){
+    String getRequestForId() {
         return this.requestForId;
     }
 
-    String getClient_id () {
+    String getClient_id() {
         return this.client_id;
     }
 
