@@ -40,7 +40,7 @@ public class InputFromArduino implements Runnable{ // implements Runnable to wor
             //TODO: make sure you always respond, the server will if HC is offline, GA waits for a reply from either server or HC.
             //TODO: change hardcoded "setHc" to string that will be filled by the first part of the incoming message from the server.
             //TODO: make sure requestForId is used instead of hardcoded id.
-            System.out.println("Sending to server: " + "setHc;" + huiscentrale.getClient_id() + ";" + "1234" + ";" + reactionFromArduino);
+            System.out.println("Sending to server: " + huiscentrale.getServercommand() + ";" + huiscentrale.getClient_id() + ";" + huiscentrale.getRequestForId() + ";" + reactionFromArduino);
             huiscentrale.proxy.sendResponse("setHc", huiscentrale.getClient_id(), "1234", reactionFromArduino);
         } catch (Exception e) {
             System.out.println("HC cannot connect server. " + e);

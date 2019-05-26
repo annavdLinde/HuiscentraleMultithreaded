@@ -7,7 +7,7 @@ public class ComPort {
     private OutputStream output; // Where to write to
     private PrintStream writer;
     private BufferedReader input;
-    String messageNOK;
+
 
     public void initialize() {
         // Create a serialport for your pc, check to see what serialport your Arduino is connected to.

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 class Huiscentrale {
     private String client_id = "5678";
+    private String serverCommand;
+    private String requestForId;
     ProxyOnsDomein proxy = new ProxyOnsDomein();
 
     ComPort comPort = new ComPort();
@@ -41,7 +43,21 @@ class Huiscentrale {
         }
     }
 
+    void setServercommand(String command) {
+        this.serverCommand = command;
+    }
 
+    String getServercommand() {
+        return this.serverCommand;
+    }
+
+    void setRequestForId (String id){
+        this.requestForId = id;
+    }
+
+    String getRequestForId(){
+        return this.requestForId;
+    }
 
     String getClient_id () {
         return this.client_id;

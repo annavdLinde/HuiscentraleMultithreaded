@@ -43,7 +43,9 @@ public class OutputToArduino implements Runnable { // implements Runnable to wor
         //checks if the message has the correct format
         if (messageSplit.length == 3) {
             String serverCommand = messageSplit[0];
+            huiscentrale.setServercommand(serverCommand);
             String outputFor = messageSplit[1];
+            huiscentrale.setRequestForId(outputFor);
 
 
             String outputToArduino = messageSplit[2];
