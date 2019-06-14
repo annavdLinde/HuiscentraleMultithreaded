@@ -5,7 +5,7 @@ import java.io.*;
 class ComPort {
     private PrintStream writer;
     private BufferedReader input;
-    
+
 
 
     void initialize() {
@@ -27,7 +27,6 @@ class ComPort {
 
         } catch (Exception e) {
             System.out.println("ComPort not available");
-            // TODO: message to proxy if comport not available
             System.exit(1); // Program ends.
         }
     }
@@ -50,6 +49,5 @@ class ComPort {
             return e.toString();
         }
     }
-
 
 }

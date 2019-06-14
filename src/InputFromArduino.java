@@ -1,5 +1,3 @@
-
-
 public class InputFromArduino implements Runnable { // implements Runnable to work with threads.
     private ComPort comPort;
     private Huiscentrale huiscentrale;
